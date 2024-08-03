@@ -9,7 +9,10 @@ export const loginHandler=async(email:string,password:string)=>{
         await signIn("credentials",{
             email,password
         })
+        return {success:true}
     } catch (error) {
         //error
+        return {success:false}
+
     } 
 }

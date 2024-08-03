@@ -16,7 +16,6 @@ export async function insertRandomFlights(count:number) {
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error(error);
       throw new Error('Error inserting flights');
     }
   }
@@ -34,7 +33,7 @@ export async function insertRandomFlights(count:number) {
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error(error);
+   
       throw new Error('Error inserting flights');
     }
   }
@@ -55,7 +54,7 @@ export async function insertRandomFlights(count:number) {
       const flights = await response.json();
     return flights
     } catch (error) {
-      console.error(error);
+   
     }
   };
   export const getAllOrigins = async () => {
@@ -66,7 +65,7 @@ export async function insertRandomFlights(count:number) {
       }
       const data = await response.json();
 return data    } catch (error) {
-      console.error(error);
+   
     }
   };
   export const getAllDestinations = async () => {
@@ -77,7 +76,7 @@ return data    } catch (error) {
       }
       const data = await response.json();
 return data    } catch (error) {
-      console.error(error);
+   
     }
   };
  export const handleStatusChange = async (id:string,status:string,cb?:()=>void) => {
@@ -99,7 +98,7 @@ return data    } catch (error) {
         cb()
       }
     } catch (error) {
-      console.error(error);
+   
     }
   };
  

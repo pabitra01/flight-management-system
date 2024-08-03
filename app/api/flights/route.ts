@@ -9,7 +9,6 @@ export async function GET(req: NextRequest) {
     const flights = await Flight.find({}).exec();
     return NextResponse.json(flights);
   } catch (error) {
-    console.error(error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
@@ -21,7 +20,6 @@ export async function POST(req: NextRequest) {
       await Flight.insertMany(flights);
       return NextResponse.json({ message: 'Successfully inserted 100 flights' });
     } catch (error) {
-      console.error(error);
       return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
   }

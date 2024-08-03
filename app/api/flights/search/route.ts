@@ -20,7 +20,6 @@ export async function POST(req: NextRequest) {
       const flights = await Flight.find(query).exec();
       return NextResponse.json(flights);
     } catch (error) {
-      console.error(error);
       return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
   }

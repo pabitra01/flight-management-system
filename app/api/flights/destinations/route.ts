@@ -10,7 +10,6 @@ export async function GET(req: NextRequest) {
     const origins = await Flight.distinct('destination');
     return NextResponse.json(origins);
   } catch (error) {
-    console.error(error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }

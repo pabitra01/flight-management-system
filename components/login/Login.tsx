@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import { loginHandler } from "../actions/login";
 import { toast } from "sonner";
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 const Login = () => {
@@ -14,12 +14,15 @@ const Login = () => {
   const handleLogin = async (formData: FormData) => {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
-    await loginHandler(email, password);
-    toast.success("Login Success");
-    window.location.reload();
+    const response = await loginHandler(email, password);
+    if (response.success) {
+      toast.success("Success");
+      window.location.reload();
+    } else {
+      toast.error("Invalid email or password");
+    }
   };
   useEffect(() => {
-    console.log(session);
     if (session.status === "authenticated") {
       redirect("/");
     }
@@ -39,8 +42,18 @@ const Login = () => {
           </div>
           <form action={handleLogin}>
             <div className=" flex flex-col gap-4">
-              <Input id="email" placeholder="name@example.com" name="email" />
-              <Input id="password" placeholder="password" name="password" />
+              <Input
+                id="email"
+                placeholder="name@example.com"
+                name="email"
+                required
+              />
+              <Input
+                id="password"
+                placeholder="password"
+                name="password"
+                required
+              />
               <Button>Login with Email</Button>
             </div>
           </form>

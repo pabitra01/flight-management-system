@@ -9,7 +9,6 @@ export const connectToDatabase=async ()=>{
     )
     console.log("connnected to database" + connection.host)
   } catch (error) {
-    console.log(error)
     throw new Error("Error connecting to database")
   }
 }

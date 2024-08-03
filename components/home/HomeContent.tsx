@@ -35,8 +35,9 @@ const HomeContent = () => {
     try {
       await insertRandomFlights(count);
       toast.success("Success");
+      window.location.reload();
     } catch (error) {
-      console.log(error);
+      //error
     }
   };
   const getAllFlightsAction = async () => {

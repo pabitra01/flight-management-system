@@ -1,13 +1,23 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { connectToDatabase } from "@/lib/mongodb";
-import User from "@/models/user";
+
 import { redirect } from "next/navigation";
 import { loginHandler } from "../actions/login";
+import { useSession } from "next-auth/react";
+import { toast } from "sonner";
+import { signUpUser } from "@/lib/session";
 
 const Signup = () => {
+  const session = useSession();
+
+  useEffect(() => {
+    if (session.status === "authenticated") {
+      redirect("/");
+    }
+  }, [session]);
   return (
     <div className=" flex w-screen h-screen ">
       <div className=" bg-[#18181B]  md:flex hidden h-full w-1/2"></div>
@@ -23,28 +33,39 @@ const Signup = () => {
           </div>
           <form
             action={async (formData: FormData) => {
-              "use server";
               const username = formData.get("username") as string;
               const email = formData.get("email") as string;
               const password = formData.get("password") as string;
-              if (!email || !password || !username) {
-                throw new Error("Please provide all credentials");
+              const response = await signUpUser(email, username, password);
+              if (response.success) {
+                await loginHandler(email, password);
+                toast.success("Success");
+                window.location.reload;
+              } else {
+                toast.message("User already exists");
               }
-              await connectToDatabase();
-              const user = await User.findOne({ email });
-              await User.create({
-                username,
-                email,
-                password,
-              });
-              await loginHandler(email, password);
-              redirect("/");
             }}
           >
             <div className=" flex flex-col gap-4">
-              <Input id="name" placeholder="name" name="username" />
-              <Input id="email" placeholder="name@example.com" name="email" />
-              <Input id="password" placeholder="password" name="password" />
+              <Input
+                id="name"
+                placeholder="Enter username"
+                name="username"
+                required
+              />
+              <Input
+                id="email"
+                placeholder="Enter email"
+                name="email"
+                type="email"
+                required
+              />
+              <Input
+                id="password"
+                placeholder="Enter password"
+                name="password"
+                required
+              />
               <Button>Sign up with Email</Button>
             </div>
           </form>

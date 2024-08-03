@@ -137,7 +137,7 @@ const SearchFlights = ({
 };
 type SearchFlightsProps = {
   setData: (a: Array<IFlight>) => void;
-  origins?: Array<string>;
-  destinations?: Array<string>;
+  origins?: Array<any>;
+  destinations?: Array<any>;
 };
 export default SearchFlights;

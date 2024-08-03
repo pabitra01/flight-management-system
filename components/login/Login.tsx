@@ -18,6 +18,7 @@ const Login = () => {
     if (response.success) {
       toast.success("Success");
       window.location.reload();
+      redirect("/");
     } else {
       toast.error("Invalid email or password");
     }
@@ -54,7 +55,7 @@ const Login = () => {
                 name="password"
                 required
               />
-              <Button>Login with Email</Button>
+              <Button>Login</Button>
             </div>
           </form>
         </div>

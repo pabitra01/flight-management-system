@@ -1,6 +1,7 @@
 "use server"
 
 import { signIn } from "@/lib/auth";
+import { isRedirectError } from "next/dist/client/components/redirect";
 
 export const loginHandler=async(email:string,password:string)=>{
 
@@ -11,7 +12,9 @@ export const loginHandler=async(email:string,password:string)=>{
         })
         return {success:true}
     } catch (error) {
-        //error
+        if(isRedirectError(error)){
+            return {success:true}
+        }
         return {success:false}
 
     } 

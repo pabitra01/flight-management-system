@@ -1,5 +1,4 @@
 import { IFlight } from "@/interface/flights";
-import { auth } from "./auth";
 
 export async function insertRandomFlights(count:number) {
     try {

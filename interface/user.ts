@@ -1,6 +1,6 @@
  interface IUser {
-    username?: string;     // Name of the user
-    email?: string;    // Email address of the user
+    username?: string;    
+    email?: string;
   }
   export type {
     IUser

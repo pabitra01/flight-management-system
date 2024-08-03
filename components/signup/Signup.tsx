@@ -41,6 +41,7 @@ const Signup = () => {
                 await loginHandler(email, password);
                 toast.success("Success");
                 window.location.reload;
+                redirect("/");
               } else {
                 toast.message("User already exists");
               }
@@ -66,7 +67,7 @@ const Signup = () => {
                 name="password"
                 required
               />
-              <Button>Sign up with Email</Button>
+              <Button>Sign up</Button>
             </div>
           </form>
         </div>

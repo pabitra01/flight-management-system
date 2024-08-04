@@ -56,8 +56,7 @@ const SearchFlights = ({
   return (
     <Card className="w-full mt-10 mb-5">
       <CardHeader>
-        <CardTitle>Create project </CardTitle>
-        <CardDescription>Deploy your new project in one-click.</CardDescription>
+        <CardTitle>Search flights </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 sm:grid-cols-3 w-full items-center gap-4">
